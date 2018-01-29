@@ -1,0 +1,57 @@
+DOCUMENTATION FOR API
+
+Datetime to be in the format YYYY-MM-DDTHH:MM:SS, where 'T' is the separator
+
+ATTENDANCE MODULE:
+
+submit_attendance:
+in: location_name(string), type(int)
+out: null
+
+get_attendance:
+in: school(string), cls(string), location_name(string), start_time(string), end_time(string)
+out: results(array of dictionary with keys 'usr' & 'present')
+
+TASK MODULE
+
+add_task:
+in: title(string), description(string), subject(string), due_date(string), cls(string), school(string)
+out: null
+
+edit_task:
+in: url_id(string), title(string), description(string), subject(string), due_date(string), cls(string), school(string)
+out: null
+
+remove_task:
+in: url_id(string)
+out: null
+
+get_task:
+in: url_id(string)
+out: title(string), description(string), subject(string), due_date(string), cls(string), school(string), time_added(string), usr(string)
+
+get_task_list:
+in: void
+out: tasks([title(string), description(string), subject(string), due_date(string), cls(string), school(string), time_added(string), usr(string), url_id(string)])
+
+
+BEACON MODULE
+
+add_beacon:
+in: uuid(string), location_name(string), school(string)
+out: null
+
+get_beacon_list:
+in: null
+out: beacons([uuid(string), location_name(string), school(string)])
+
+
+SUGGESTIONS MODULE
+
+add_suggestion:
+in: text(string), date(string), cls(string), school(string)
+out: null
+
+get_suggestions:
+in: null
+out: [text(string)]
