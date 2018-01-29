@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+{% autoescape true %}
+<html>
+	<head>
+		<title>Eduto</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="static/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="static/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="static/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="static/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Logo -->
+						<h1><a href="/" id="logo">Eduto<em> Admin Web Portal {{log}}</em></a></h1>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="locations">Add Locations</a></li>
+								<li><a href="suggestions">Add Lesson Materials</a></li>
+								<li><a href="attendance">Check Attendance</a></li>
+								<li><a href="homework">Homework Analysis</a></li>
+								<li><a href="leaderboard">View Leaderboard</a></li>
+								<li><a href="crowd">Check Crowd Density</a></li>
+							</ul>
+						</nav>
+				</div>
+
+			<!-- CTA -->
+			{% if url_linktext == "Login"%}
+				<section id="cta" class="wrapper style3">
+					<div class="container">
+						<header>
+							
+							<h2 style="color: white">Get Started Now</h2>
+							<a href="{{url|safe}}" class="button">{{url_linktext}}</a>
+						</header>
+					</div>
+				</section>
+			{% endif %}	
+			<!-- Highlights -->
+				<section class="wrapper style1">
+					<div class="container">
+						<div class="row 200%">
+							<section class="3u 12u(narrower)">
+								<div class="box highlight">
+									<i class="icon major fa-map-marker"></i>
+									<h3>Add Locations</h3>
+									<p>Enter Bluetooth beacon UUID to register them with a certain location.</p>
+								</div>
+							</section>
+							<section class="3u 12u(narrower)">
+								<div class="box highlight">
+									<i class="icon major fa-check-square-o"></i>
+									<h3>Check Attendance</h3>
+									<p>Find out which students are absent or late for class, as well as frequently absent students.</p>
+								</div>
+							</section>
+							<section class="3u 12u(narrower)">
+								<div class="box highlight">
+									<i class="icon major fa-file-text-o"></i>
+									<h3>Add Lesson Materials</h3>
+									<p>Add links, content or admin information that students will see upon entering a lesson venue.</p>
+								</div>
+							</section>
+							<section class="3u 12u(narrower)">
+								<div class="box highlight">
+									<i class="icon major fa-bar-chart"></i>
+									<h3>Monitor Homework and View Leaderboard</h3>
+									<p>See how much homework each class has by subject, and also homework load over time. Also check which students have been actively participating in updating homework.</p>
+								</div>
+							</section>
+						</div>
+					</div>
+				</section>
+						<!-- CTA -->
+			{% if url_linktext == "Logout"%}
+				<section id="cta" class="wrapper style3">
+					<div class="container">
+						<header>
+							<a href="{{url|safe}}" class="button">{{url_linktext}}</a>
+						</header>
+					</div>
+				</section>
+			{% endif %}	
+			<!-- Footer -->
+				<div id="footer">
+					<div class="container">
+						<div class="row">
+							<section class="6u 12u(narrower) 12u$(mobilep)">
+								<h3>Eduto Application</h3>
+								<ul class="links">
+									<li><a href="https://play.google.com/store/apps/details?id=com.eduto">Android</a></li>
+									<li><a href="#">IOS</a></li>
+								</ul>
+							</section>
+							<section class="6u 12u(narrower)">
+								<h3>Submit A Bug Report</h3>
+								<form>
+									<div class="row 50%">
+										<div class="6u 12u(mobilep)">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="6u 12u(mobilep)">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+									</div>
+									<div class="row 50%">
+										<div class="12u">
+											<textarea name="message" id="message" placeholder="Message" rows="5"></textarea>
+										</div>
+									</div>
+									<div class="row 50%">
+										<div class="12u">
+											<ul class="actions">
+												<li><input type="submit" class="button alt" value="Send Message" /></li>
+											</ul>
+										</div>
+									</div>
+								</form>
+							</section>
+						</div>
+					</div>
+
+					<!-- Copyright -->
+						<div class="copyright">
+							<ul class="menu">
+								<li>&copy; Dunman High School. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="static/js/jquery.min.js"></script>
+			<script src="static/js/jquery.dropotron.min.js"></script>
+			<script src="static/js/skel.min.js"></script>
+			<script src="static/js/util.js"></script>
+			<!--[if lte IE 8]><script src="static/js/ie/respond.min.js"></script><![endif]-->
+			<script src="static/js/main.js"></script>
+
+	</body>
+</html>
+{% endautoescape %}

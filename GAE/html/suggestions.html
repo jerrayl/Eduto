@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+{% autoescape true %}
+<html>
+	<head>
+		<title>Add Lesson Materials</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="static/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="static/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="static/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="static/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+		<div id="page-wrapper">
+		
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Logo -->
+						<h1><a href="/" id="logo">Eduto<em> Admin Web Portal</em></a></h1>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="locations">Add Locations</a></li>
+								<li class="current"><a href="suggestions">Add Lesson Materials</a></li>
+								<li><a href="attendance">Check Attendance</a></li>
+								<li><a href="homework">Homework Analysis</a></li>
+								<li><a href="leaderboard">View Leaderboard</a></li>
+								<li><a href="crowd">Check Crowd Density</a></li>
+							</ul>
+						</nav>
+
+				</div>
+				
+			<!-- Main -->
+				<section class="wrapper style1">
+					<div class="container" style="overflow-x:auto;">
+					<h3>Upcoming Lesson Materials</h3>
+					<table>
+						<th><b>Location</b></th>
+						<th><b>Date</b></th>
+						<th><b>Subject</b></th>
+						<th><b>Text</b></th>
+						{% for row in rows %}
+						<tr>
+						<td>{{row[0]}}</td>
+						<td>{{row[1]}}</td>
+						<td>{{row[2]}}</td>
+						<td>{{row[3]}}</td>
+						</tr>
+						{% endfor %}					
+					</table>
+					</div>
+				</section>
+				<section class="wrapper style1">
+					<div class="container">
+					<h3>Add Lesson Materials</h3>
+					<form method="post">
+						<div class="row 50%">
+							<div class="4u 12u(mobilep)">
+								<label>Subject:</label>
+								<select name="subject" id="subject" required>
+								<option value="choose subject" selected disabled>Choose Subject</option>
+								{% for code, name in subjects %}
+								<option value="{{code}}">{{name}}</option>
+								{% endfor %}
+								</select>
+							</div>
+							<div class="4u 12u(mobilep)">
+								<label>Location:</label>
+								<select name="location" id="location" required>
+									<option value="choose location" selected disabled>Choose Location</option>
+									{% for location in locations %}
+									<option value="{{location}}">{{location}}</option>
+									{% endfor %}
+								</select>
+							</div>
+							<div class="4u 12u(mobilep)">
+								<label>Date:</label>
+								<input type="date" name="date" id="date" required/>
+							</div>
+						</div>
+						<div class="row 50%">
+							<div class="12u">
+								<label>Content:</label>
+								<textarea name="message" id="message" placeholder="Text" rows="5" required></textarea>
+							</div>
+						</div>
+						<div class="row 50%">
+							<div class="12u">
+								<ul class="actions">
+									<li><input type="submit" class="button alt" value="Submit Suggestion"/></li>
+								</ul>
+							</div>
+						</div>
+					</form>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<div id="footer">
+					<!-- Copyright -->
+						<div class="copyright">
+							<ul class="menu">
+								<li>&copy; Dunman High School. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="static/js/jquery.min.js"></script>
+			<script src="static/js/jquery.dropotron.min.js"></script>
+			<script src="static/js/skel.min.js"></script>
+			<script src="static/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="static/js/main.js"></script>
+
+	</body>
+</html>
+{% endautoescape %}

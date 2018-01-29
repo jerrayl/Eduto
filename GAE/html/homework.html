@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+{% autoescape true %}
+<html>
+	<head>
+		<title>Homework Analysis</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="static/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="static/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="static/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="static/css/ie9.css" /><![endif]-->
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+ 	   google.charts.load('current', {'packages':['corechart']});
+	   google.charts.setOnLoadCallback(drawChart);
+	   function drawChart() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Subject');
+        data.addColumn('number', 'Number of homework');
+		stuff = {{data1 | safe}};
+		for (let value of stuff) {
+		data.addRow([value[0],value[1]]);
+		}
+        var options = {'title':'Amount of Homework per Subject',
+                       'width':800,
+                       'height':600}
+        var chart = new google.visualization.PieChart(document.getElementById('chart_1'));
+        chart.draw(data, options);
+		
+		var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Homework');
+        data.addColumn('number', 'Number of Homework per Week');
+		stuff2 = {{data2 | safe}};
+		for (let value of stuff2) {
+		data.addRow([value[0],value[1]]);
+		}
+        var options = {'title':'Workload by week',
+                       'width':800,
+                       'height':600}
+        var chart = new google.visualization.LineChart(document.getElementById('chart_2'));
+		
+		
+        chart.draw(data, options);
+      }
+    </script>
+	</head>
+	<body>
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Logo -->
+						<h1><a href="/" id="logo">Eduto<em> Admin Web Portal</em></a></h1>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="locations">Add Locations</a></li>
+								<li><a href="suggestions">Add Lesson Materials</a></li>
+								<li><a href="attendance">Check Attendance</a></li>
+								<li class="current"><a href="homework">Homework Analysis</a></li>
+								<li><a href="leaderboard">View Leaderboard</a></li>
+								<li><a href="crowd">Check Crowd Density</a></li>
+							</ul>
+						</nav>
+
+				</div>
+				
+			<!-- Main -->
+				<section class="wrapper style1">
+					<div class="container">
+					<h3>Homework Analysis</h3>
+					<form method="post">
+						<div class="row 50%">
+							<div class="6u 12u(mobilep)">
+								<label>Class:</label>
+								<input type="text" name="class" id="class" placeholder="e.g. 5C23"></input>
+							</div>
+							<div class="6u 12u(mobilep)">
+								<label>Subject:</label>
+								<select name="subject" id="subject" required>
+								<option value="choose subject" selected disabled>Choose Subject</option>
+								<option value="">All</option>
+								{% for code, name in subjects %}
+								<option value="{{code}}">{{name}}</option>
+								{% endfor %}
+								</select> 
+							</div>
+						</div>
+						<div class="row 50%">
+							<div class="6u 12u(mobilep)">
+								<label>Start Date:</label>
+								<input type="date" name="start_date" id="start_date" value={{today}} />
+							</div>
+							<div class="6u 12u(mobilep)">
+								<label>End Date:</label>
+								<input type="date" name="end_date" id="end_date"/>
+							</div>
+						</div>
+						<div class="row 50%">
+							<div class="12u">
+								<ul class="actions">
+									<li><input type="submit" class="button alt" value="Display Homework"/></li>
+								</ul>
+							</div>
+						</div>
+					</form>
+					</div>
+				</section>
+				<section class="wrapper style1">
+					<div class="container" style="overflow-x:auto;">
+					<h3>Homework:</h3>
+					<table>
+						<th><b>Title</b></th>
+						<th><b>Subject</b></th>
+						<th><b>Class</b></th>
+						<th><b>Due Date</b></th>
+						{% for row in rows %}
+						<tr>
+						<td>{{row[0]}}</td>
+						<td>{{row[1]}}</td>
+						<td>{{row[2]}}</td>
+						<td>{{row[3]}}</td>
+						</tr>
+						{% endfor %}					
+					</table>
+					</div>
+				</section>
+			<section class="wrapper style1">
+			<div class="container">
+			<div class="row 50%">
+				<div class="10u">
+			<div id="chart_1"/>
+			</div></div></div>
+			</section>
+			<section class="wrapper style1">
+			<div class="container">
+			<div class="row 50%">
+				<div class="10u">
+				<div id="chart_2"/>
+			</div></div></div>				
+			</section>
+			<!-- Footer -->
+				<div id="footer">
+					<!-- Copyright -->
+						<div class="copyright">
+							<ul class="menu">
+								<li>&copy; Dunman High School. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="static/js/jquery.min.js"></script>
+			<script src="static/js/jquery.dropotron.min.js"></script>
+			<script src="static/js/skel.min.js"></script>
+			<script src="static/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="static/js/main.js"></script>
+
+	</body>
+</html>
+{% endautoescape %}

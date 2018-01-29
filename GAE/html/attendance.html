@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+{% autoescape true %}
+<html>
+	<head>
+		<title>Check Attendance</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="static/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="static/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="static/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="static/css/ie9.css" /><![endif]-->
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+	   google.charts.load('current', {'packages':['corechart']});
+	   google.charts.setOnLoadCallback(drawChart);
+	   function drawChart() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Attendance');
+        data.addColumn('number', 'Number of Students');
+		stuff1 = {{data1 | safe}};
+		for (let value of stuff1) {
+		data.addRow([value[0],value[1]]);
+		}
+        var options = {'title':'Students Present/Absent',
+                       'width':800,
+                       'height':600}
+        var chart = new google.visualization.PieChart(document.getElementById('chart_1'));
+		
+		chart.draw(data, options);
+		
+		var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Student');
+        data.addColumn('number', 'Times absent this month');
+		stuff2 = {{data2 | safe}};
+		for (let value of stuff2) {
+		data.addRow([value[0],value[1]]);
+		}
+        var options = {'title':'Frequently absent students',
+                       'width':800,
+                       'height':600}
+        var chart = new google.visualization.BarChart(document.getElementById('chart_2'));
+		
+		
+        chart.draw(data, options);
+      }
+	</script>
+	</head>
+	<body>
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Logo -->
+						<h1><a href="/" id="logo">Eduto<em> Admin Web Portal</em></a></h1>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="locations">Add Locations</a></li>
+								<li><a href="suggestions">Add Lesson Materials</a></li>
+								<li class="current"><a href="attendance">Check Attendance</a></li>
+								<li><a href="homework">Homework Analysis</a></li>
+								<li><a href="leaderboard">View Leaderboard</a></li>
+								<li><a href="crowd">Check Crowd Density</a></li>
+							</ul>
+						</nav>
+
+				</div>
+			<!-- Main -->
+				<section class="wrapper style1">
+					<div class="container">
+					<h3>Check Attendance</h3>
+					<form method="post">
+						<div class="row 50%">
+							<div class="6u 12u(mobilep)">
+							<label>Location:</label>
+							<select name="location" id="location" required >
+							<option value="choose location" selected disabled>Choose Location</option>
+								{% for location in locations %}
+								<option value="{{location}}">{{location}}</option>
+								{% endfor %}
+							</select> 
+							</div>
+							<div class="5u 12u(mobilep)">
+								<label>Class:</label>
+								<input type="text" name="class" id="class" placeholder="e.g. 5C23" required />
+							</div>
+							<div class="1u 12u(mobilep)">
+								<label>Show All:</label>
+								<input type="checkbox" name="show_all" id="show_all" />
+							</div>
+						</div>
+						<div class="row 50%">
+							<div class="4u 12u(mobilep)">
+								<label>Date:</label>
+								<input type="date" name="date" id="date" value="{{today}}" required />
+							</div>
+							<div class="4u 12u(mobilep)">
+								<label>Start Time:</label>
+								<input type="time" name="start_time" id="start_time" required />
+							</div>
+							<div class="4u 12u(mobilep)">
+								<label>End Time:</label>
+								<input type="time" name="end_time" id="end_time" required />
+							</div>
+						</div>
+						<div class="row 50%">
+							<div class="12u">
+								<ul class="actions">
+									<li><input type="submit" class="button alt" value="Check Attendance"/></li>
+								</ul>
+							</div>
+						</div>
+					</form>
+					</div>
+				</section>
+				<section class="wrapper style1">
+					<div class="container" style="overflow-x:auto;">
+					<h3>Result:</h3>
+					<table>
+						<th><b>Student</b></th>
+						<th><b>Attendance</b></th>
+						{% for row in rows %}
+						<tr>
+						<td>{{row[0]}}</td>
+						<td>{% if row[1] %}Present{% else %}Absent{% endif %}</td>
+						</tr>
+						{% endfor %}					
+					</table>
+					</div>
+				</section>
+				<section class="wrapper style1">
+				<div class="container">
+				<div class="row 50%">
+				<div class="10u">
+				<div id="chart_1"/>
+				</div></div></div>
+				</section>
+				<section class="wrapper style1">
+				<div class="container">
+				<div class="row 50%">
+				<div class="10u">
+				<div id="chart_2"/>
+				</div>
+				{% if post %}
+				<div class="2u">
+				<a href="/mail" role="button" class="button alt">Email Parents</a>
+				</div>
+				{% endif %}
+				</div>
+				</div>
+				</div>
+				</div>
+				</section>
+
+			<!-- Footer -->
+				<div id="footer">
+					<!-- Copyright -->
+						<div class="copyright">
+							<ul class="menu">
+								<li>&copy; Dunman High School. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="static/js/jquery.min.js"></script>
+			<script src="static/js/jquery.dropotron.min.js"></script>
+			<script src="static/js/skel.min.js"></script>
+			<script src="static/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="static/js/main.js"></script>
+
+	</body>
+</html>
+{% endautoescape %}

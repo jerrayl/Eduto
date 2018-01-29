@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+{% autoescape true %}
+<html>
+	<head>
+		<title>View Leaderboard</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="static/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="static/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="static/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="static/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+		<div id="page-wrapper">
+		
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Logo -->
+						<h1><a href="/" id="logo">Eduto<em> Admin Web Portal</em></a></h1>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="locations">Add Locations</a></li>
+								<li><a href="suggestions">Add Lesson Materials</a></li>
+								<li><a href="attendance">Check Attendance</a></li>
+								<li><a href="homework">Homework Analysis</a></li>
+								<li class="current"><a href="leaderboard">View Leaderboard</a></li>
+								<li><a href="crowd">Check Crowd Density</a></li>
+							</ul>
+						</nav>
+
+				</div>
+				
+			<!-- Main -->
+				<section class="wrapper style1">
+					<div class="container">
+					<h3>View Leaderboard</h3>
+					<form method="post">
+						<div class="row 50%">
+							
+							<div class="3u 12u(mobilep)">
+								<label>Class:</label>
+								<input type="text" name="class" id="class" placeholder="e.g. 5C23" required></input>
+							</div>
+							<div class="3u 12u">
+								<ul class="actions">
+									<label> &nbsp;</label>
+									<li><input type="submit" class="button alt" value="Display Leaderboard"/></li>
+								</ul>
+							</div>
+						</div>
+					</form>
+					</div>
+				</section>
+			
+				<section class="wrapper style1">
+					<div class="container" style="overflow-x:auto;">
+					<h3>Leaderboard for {{cls}}:</h3>
+					<table>
+						<th><b>Student</b></th>
+						<th><b>Points</b></th>
+						{% for row in rows %}
+						<tr>
+						<td>{{row[0]}}</td>
+						<td>{{row[1]}}</td>
+						</tr>
+						{% endfor %}					
+					</table>
+					</div>
+				</section>
+			<!-- Footer -->
+				<div id="footer">
+					<!-- Copyright -->
+						<div class="copyright">
+							<ul class="menu">
+								<li>&copy; Dunman High School. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="static/js/jquery.min.js"></script>
+			<script src="static/js/jquery.dropotron.min.js"></script>
+			<script src="static/js/skel.min.js"></script>
+			<script src="static/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="static/js/main.js"></script>
+
+	</body>
+</html>
+{% endautoescape %}
